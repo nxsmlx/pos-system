@@ -423,12 +423,14 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.01em; }
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     padding: 12px 14px 14px;
     box-shadow: 0 -8px 24px rgba(0,0,0,.15);
-    max-height: 80vh;
+    max-height: 92vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     transition: transform .25s ease;
   }
   .pos-right.collapsed { transform: translateY(calc(100% - 58px)); }
   .pos-right.collapsed .cart-toggle-chev { transform: rotate(180deg); }
-  .cart-items { max-height: 160px; }
+  .cart-items { max-height: 40vh; }
 }
 .cart-items { display: flex; flex-direction: column; gap: 8px; max-height: 280px; overflow-y: auto; margin-bottom: 12px; }
 .cart-line { border-bottom: 1px dashed var(--border-strong); padding-bottom: 8px; }

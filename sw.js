@@ -1,5 +1,5 @@
 // sw.js - Service Worker untuk AFQAmeer POS (offline cache)
-const CACHE = 'afqameer-pos-v4';
+const CACHE = 'afqameer-pos-v6';
 const ASSETS = [
   './',
   './index.html',
