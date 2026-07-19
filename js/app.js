@@ -86,8 +86,24 @@
   // Default: collapsed on mobile
   if (window.innerWidth < 768) cartPanel.classList.add('collapsed');
   cartToggle.addEventListener('click', () => {
+    cartPanel.classList.remove('hide-bar');
     cartPanel.classList.toggle('collapsed');
   });
+
+  // Auto-hide troli bar bila scroll bawah (cari produk), muncul bila scroll atas
+  let lastScroll = 0;
+  const posPanel = document.getElementById('tab-pos');
+  window.addEventListener('scroll', () => {
+    if (!posPanel.classList.contains('active') || window.innerWidth >= 768) return;
+    if (cartPanel.classList.contains('collapsed') === false) return; // hanya bila collapse
+    const cur = window.scrollY;
+    if (cur > lastScroll + 5 && cur > 100) {
+      cartPanel.classList.add('hide-bar'); // scroll bawah, sembunyi
+    } else if (cur < lastScroll - 5) {
+      cartPanel.classList.remove('hide-bar'); // scroll atas, muncul
+    }
+    lastScroll = cur;
+  }, { passive: true });
 
   // ---------- Quick pay buttons ----------
   document.getElementById('quick-pay').addEventListener('click', (e) => {
