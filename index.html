@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#FF6B35" />
+  <meta name="theme-color" content="#4F46E5" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
@@ -11,17 +11,14 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="icons/icon-192.png" />
   <link rel="icon" type="image/png" href="icons/icon-192.png" />
-  <link rel="stylesheet" href="css/style.css?v=7" />
+  <link rel="stylesheet" href="css/style.css?v=8" />
 </head>
 <body>
   <!-- ========== Top App Bar (compact) ========== -->
   <header class="app-bar">
     <div class="brand">
-      <span class="logo">🧾</span>
-      <div>
-        <h1>AFQAmeer POS</h1>
-        <span class="brand-sub" id="header-clock">--:--</span>
-      </div>
+      <span class="logo">A</span>
+      <span class="brand-sub" id="header-clock">--:--</span>
     </div>
     <button class="icon-btn" id="btn-export" title="Backup data">⬇</button>
   </header>
@@ -33,7 +30,7 @@
     <section id="tab-dashboard" class="tab-panel active">
       <div class="hero">
         <div class="hero-greet">
-          <p class="greet-hello">Selamat datang 👋</p>
+          <p class="greet-hello">Selamat datang</p>
           <h2 class="greet-title" id="dash-date">Hari ini</h2>
         </div>
         <div class="hero-stat">
@@ -45,28 +42,28 @@
 
       <div class="stat-grid">
         <div class="stat-card">
-          <span class="stat-emoji">💰</span>
+          <div class="stat-emoji">$</div>
           <div>
             <span class="stat-label">Total Jualan</span>
             <span class="stat-value" id="dash-total">RM 0.00</span>
           </div>
         </div>
         <div class="stat-card">
-          <span class="stat-emoji">🧾</span>
+          <div class="stat-emoji">#</div>
           <div>
             <span class="stat-label">Transaksi</span>
             <span class="stat-value" id="dash-count">0</span>
           </div>
         </div>
         <div class="stat-card">
-          <span class="stat-emoji">📦</span>
+          <div class="stat-emoji">P</div>
           <div>
             <span class="stat-label">Produk</span>
             <span class="stat-value" id="dash-products">0</span>
           </div>
         </div>
         <div class="stat-card">
-          <span class="stat-emoji">⚠️</span>
+          <div class="stat-emoji">!</div>
           <div>
             <span class="stat-label">Stok Rendah</span>
             <span class="stat-value" id="dash-low">0</span>
@@ -77,15 +74,15 @@
       <h3 class="section-title">Tindakan Pantas</h3>
       <div class="quick-actions">
         <button class="qa-btn primary" data-go="pos">
-          <span class="qa-emoji">🛒</span>
+          <span class="qa-emoji">&rarr;</span>
           <span>Mula Jual</span>
         </button>
         <button class="qa-btn" data-go="catalog">
-          <span class="qa-emoji">➕</span>
+          <span class="qa-qa-ico">+</span>
           <span>Produk Baru</span>
         </button>
         <button class="qa-btn" data-go="reports">
-          <span class="qa-emoji">📊</span>
+          <span class="qa-qa-ico">&uarr;</span>
           <span>Laporan</span>
         </button>
       </div>
@@ -196,16 +193,16 @@
   <!-- ========== Bottom Tab Bar (mobile) ========== -->
   <nav class="bottom-nav">
     <button class="bn-item active" data-tab="dashboard">
-      <span class="bn-ico">🏠</span><span>Utama</span>
+      <span class="bn-ico">&bull;</span><span>Utama</span>
     </button>
     <button class="bn-item" data-tab="pos">
-      <span class="bn-ico">🛒</span><span>Jualan</span>
+      <span class="bn-ico">&bull;</span><span>Jualan</span>
     </button>
     <button class="bn-item" data-tab="catalog">
-      <span class="bn-ico">📦</span><span>Produk</span>
+      <span class="bn-ico">&bull;</span><span>Produk</span>
     </button>
     <button class="bn-item" data-tab="reports">
-      <span class="bn-ico">📊</span><span>Laporan</span>
+      <span class="bn-ico">&bull;</span><span>Laporan</span>
     </button>
   </nav>
 
@@ -252,9 +249,9 @@
     </div>
   </div>
 
-  <script src="js/store.js?v=7"></script>
-  <script src="js/catalog.js?v=7"></script>
-  <script src="js/cart.js?v=7"></script>
-  <script src="js/app.js?v=7"></script>
+  <script src="js/store.js?v=8"></script>
+  <script src="js/catalog.js?v=8"></script>
+  <script src="js/cart.js?v=8"></script>
+  <script src="js/app.js?v=8"></script>
 </body>
 </html>
