@@ -91,11 +91,10 @@
       const paid = parseFloat(document.getElementById('cart-paid').value) || 0;
       const change = paid - total;
 
-      document.getElementById('cart-count').textContent = count;
+      document.getElementById('cart-badge').textContent = count;
       document.getElementById('cart-subtotal').textContent = 'RM ' + sub.toFixed(2);
       document.getElementById('cart-total').textContent = 'RM ' + total.toFixed(2);
       document.getElementById('cart-change').textContent = 'RM ' + (change >= 0 ? change.toFixed(2) : '0.00');
-      document.getElementById('cart-badge').textContent = count;
 
       const btn = document.getElementById('btn-checkout');
       btn.disabled = cart.length === 0 || total <= 0 || paid < total;
