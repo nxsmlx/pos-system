@@ -95,9 +95,24 @@
       document.getElementById('cart-subtotal').textContent = 'RM ' + sub.toFixed(2);
       document.getElementById('cart-total').textContent = 'RM ' + total.toFixed(2);
       document.getElementById('cart-change').textContent = 'RM ' + (change >= 0 ? change.toFixed(2) : '0.00');
+      document.getElementById('cart-badge').textContent = count;
 
       const btn = document.getElementById('btn-checkout');
       btn.disabled = cart.length === 0 || total <= 0 || paid < total;
+    },
+
+    // Quick pay buttons: set exact or add RM amount
+    setPaid(value) {
+      const input = document.getElementById('cart-paid');
+      const total = this.total();
+      if (value === 'exact') {
+        input.value = total.toFixed(2);
+      } else {
+        const current = parseFloat(input.value) || 0;
+        // if current matches a button value, start fresh; otherwise add
+        input.value = (current + value).toFixed(2);
+      }
+      this.updateTotals();
     },
 
     checkout() {
@@ -140,7 +155,7 @@
 
       document.getElementById('receipt-content').innerHTML = `
         <div class="receipt-head">
-          <h3>🧾 POS System</h3>
+          <h3>🧾 AFQAmeer POS</h3>
           <p>${dateStr}</p>
         </div>
         <hr/>

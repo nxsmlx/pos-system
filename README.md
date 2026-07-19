@@ -1,4 +1,4 @@
-# POS System (Vanilla JS - GitHub Pages)
+# AFQAmeer POS (Vanilla JS - GitHub Pages)
 
 Sistem POS (Point of Sale) ringan dibina dengan **HTML/CSS/JS tulen** - tiada build step, tiada backend. Data disimpan dalam **LocalStorage** browser. Sesuai dihos di **GitHub Pages**.
 

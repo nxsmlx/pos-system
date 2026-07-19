@@ -2,135 +2,237 @@
 <html lang="ms">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>POS System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#FF6B35" />
+  <title>AFQAmeer POS</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header class="app-header">
+  <!-- ========== Top App Bar (compact) ========== -->
+  <header class="app-bar">
     <div class="brand">
       <span class="logo">🧾</span>
-      <h1>POS System</h1>
+      <div>
+        <h1>AFQAmeer POS</h1>
+        <span class="brand-sub" id="header-clock">--:--</span>
+      </div>
     </div>
-    <nav class="tabs">
-      <button class="tab active" data-tab="pos">Jualan</button>
-      <button class="tab" data-tab="catalog">Produk</button>
-      <button class="tab" data-tab="reports">Laporan</button>
-    </nav>
+    <button class="icon-btn" id="btn-export" title="Backup data">⬇</button>
   </header>
 
+  <!-- ========== Main panels ========== -->
   <main class="app-main">
-    <!-- TAB: POS (Jualan) -->
-    <section id="tab-pos" class="tab-panel active">
+
+    <!-- ===== DASHBOARD ===== -->
+    <section id="tab-dashboard" class="tab-panel active">
+      <div class="hero">
+        <div class="hero-greet">
+          <p class="greet-hello">Selamat datang 👋</p>
+          <h2 class="greet-title" id="dash-date">Hari ini</h2>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-label">Jualan Hari Ini</span>
+          <span class="hero-value" id="dash-today">RM 0.00</span>
+          <span class="hero-meta" id="dash-today-count">0 transaksi</span>
+        </div>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <span class="stat-emoji">💰</span>
+          <div>
+            <span class="stat-label">Total Jualan</span>
+            <span class="stat-value" id="dash-total">RM 0.00</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-emoji">🧾</span>
+          <div>
+            <span class="stat-label">Transaksi</span>
+            <span class="stat-value" id="dash-count">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-emoji">📦</span>
+          <div>
+            <span class="stat-label">Produk</span>
+            <span class="stat-value" id="dash-products">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-emoji">⚠️</span>
+          <div>
+            <span class="stat-label">Stok Rendah</span>
+            <span class="stat-value" id="dash-low">0</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-title">Tindakan Pantas</h3>
+      <div class="quick-actions">
+        <button class="qa-btn primary" data-go="pos">
+          <span class="qa-emoji">🛒</span>
+          <span>Mula Jual</span>
+        </button>
+        <button class="qa-btn" data-go="catalog">
+          <span class="qa-emoji">➕</span>
+          <span>Produk Baru</span>
+        </button>
+        <button class="qa-btn" data-go="reports">
+          <span class="qa-emoji">📊</span>
+          <span>Laporan</span>
+        </button>
+      </div>
+
+      <h3 class="section-title">Jualan Terkini</h3>
+      <div class="recent-list" id="dash-recent">
+        <p class="empty">Tiada jualan lagi hari ini.</p>
+      </div>
+    </section>
+
+    <!-- ===== POS ===== -->
+    <section id="tab-pos" class="tab-panel">
       <div class="pos-layout">
         <div class="pos-left">
           <div class="search-bar">
-            <input type="search" id="pos-search" placeholder="Cari produk (nama / barcode)..." />
+            <span class="search-ico">🔍</span>
+            <input type="search" id="pos-search" placeholder="Cari produk / barcode..." />
           </div>
+          <div class="chip-row" id="pos-chips"></div>
           <div id="pos-grid" class="product-grid"></div>
         </div>
-        <div class="pos-right">
-          <h2>Trol</h2>
+        <aside class="pos-right">
+          <div class="cart-head">
+            <h2>Trol</h2>
+            <span class="cart-badge" id="cart-badge">0</span>
+          </div>
           <div id="cart-items" class="cart-items">
             <p class="empty">Trol kosong. Klik produk untuk tambah.</p>
           </div>
           <div class="cart-summary">
-            <div class="row"><span>Bil. item</span><span id="cart-count">0</span></div>
             <div class="row"><span>Subtotal</span><span id="cart-subtotal">RM 0.00</span></div>
-            <div class="row"><span>Diskaun (RM)</span>
+            <div class="row"><span>Diskaun</span>
               <input type="number" id="cart-discount" min="0" value="0" step="0.01" />
             </div>
             <div class="row total"><span>Total</span><span id="cart-total">RM 0.00</span></div>
             <div class="row">
-              <span>Jumlah Bayar (RM)</span>
+              <span>Bayar</span>
               <input type="number" id="cart-paid" min="0" value="0" step="0.01" />
             </div>
-            <div class="row"><span>Baki</span><span id="cart-change">RM 0.00</span></div>
+            <div class="quick-pay" id="quick-pay">
+              <button data-pay="5">RM5</button>
+              <button data-pay="10">RM10</button>
+              <button data-pay="20">RM20</button>
+              <button data-pay="50">RM50</button>
+              <button data-pay="100">RM100</button>
+              <button data-pay="exact">Exact</button>
+            </div>
+            <div class="row change"><span>Baki</span><span id="cart-change">RM 0.00</span></div>
             <button id="btn-checkout" class="btn-primary" disabled>Bayar</button>
             <button id="btn-clear" class="btn-ghost">Kosongkan Trol</button>
           </div>
-        </div>
+        </aside>
       </div>
     </section>
 
-    <!-- TAB: Catalog (Produk) -->
+    <!-- ===== CATALOG ===== -->
     <section id="tab-catalog" class="tab-panel">
       <div class="catalog-header">
-        <h2>Senarai Produk</h2>
-        <div>
-          <input type="search" id="catalog-search" placeholder="Cari produk..." />
-          <button id="btn-add-product" class="btn-primary">+ Produk Baru</button>
-        </div>
+        <h2>Produk</h2>
+        <button id="btn-add-product" class="btn-primary">
+          <span>+</span> Tambah
+        </button>
       </div>
-      <div class="table-wrap">
-        <table class="catalog-table">
-          <thead>
-            <tr>
-              <th>#</th><th>Nama</th><th>Barcode</th>
-              <th>Kategori</th><th>Harga (RM)</th><th>Stok</th><th>Tindakan</th>
-            </tr>
-          </thead>
-          <tbody id="catalog-body"></tbody>
-        </table>
+      <div class="search-bar">
+        <span class="search-ico">🔍</span>
+        <input type="search" id="catalog-search" placeholder="Cari produk..." />
       </div>
+      <div class="chip-row" id="catalog-chips"></div>
+      <div class="catalog-grid" id="catalog-grid"></div>
     </section>
 
-    <!-- TAB: Reports (Laporan) -->
+    <!-- ===== REPORTS ===== -->
     <section id="tab-reports" class="tab-panel">
       <h2>Laporan Jualan</h2>
-      <div class="report-cards" id="report-cards">
-        <div class="card"><h3>Jumlah Jualan</h3><p id="rep-total">RM 0.00</p></div>
-        <div class="card"><h3>Bil. Transaksi</h3><p id="rep-count">0</p></div>
-        <div class="card"><h3>Purata / Transaksi</h3><p id="rep-avg">RM 0.00</p></div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <span class="stat-emoji">💰</span>
+          <div><span class="stat-label">Total</span><span class="stat-value" id="rep-total">RM 0.00</span></div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-emoji">🧾</span>
+          <div><span class="stat-label">Transaksi</span><span class="stat-value" id="rep-count">0</span></div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-emoji">📈</span>
+          <div><span class="stat-label">Purata</span><span class="stat-value" id="rep-avg">RM 0.00</span></div>
+        </div>
       </div>
-      <button id="btn-clear-sales" class="btn-ghost">Padam Semua Laporan</button>
-      <div class="table-wrap">
-        <table class="catalog-table">
-          <thead>
-            <tr><th>No</th><th>Masa</th><th>Item</th><th>Total (RM)</th><th>Bayar (RM)</th><th>Baki (RM)</th></tr>
-          </thead>
-          <tbody id="report-body"></tbody>
-        </table>
+      <div class="report-actions">
+        <button id="btn-export-csv" class="btn-ghost">⬇ Export CSV</button>
+        <button id="btn-clear-sales" class="btn-ghost danger">🗑 Padam Laporan</button>
+      </div>
+      <div class="report-list" id="report-list">
+        <p class="empty">Tiada jualan lagi.</p>
       </div>
     </section>
   </main>
 
-  <!-- MODAL: Product Form -->
+  <!-- ========== Bottom Tab Bar (mobile) ========== -->
+  <nav class="bottom-nav">
+    <button class="bn-item active" data-tab="dashboard">
+      <span class="bn-ico">🏠</span><span>Utama</span>
+    </button>
+    <button class="bn-item" data-tab="pos">
+      <span class="bn-ico">🛒</span><span>Jualan</span>
+    </button>
+    <button class="bn-item" data-tab="catalog">
+      <span class="bn-ico">📦</span><span>Produk</span>
+    </button>
+    <button class="bn-item" data-tab="reports">
+      <span class="bn-ico">📊</span><span>Laporan</span>
+    </button>
+  </nav>
+
+  <!-- ========== Modal: Product Form ========== -->
   <div id="product-modal" class="modal hidden">
-    <div class="modal-card">
+    <div class="modal-card glass">
       <h3 id="modal-title">Produk Baru</h3>
       <form id="product-form">
         <input type="hidden" id="prod-id" />
         <label>Nama
-          <input type="text" id="prod-name" required />
+          <input type="text" id="prod-name" required placeholder="cth: Kopi O" />
         </label>
         <label>Barcode
-          <input type="text" id="prod-barcode" />
+          <input type="text" id="prod-barcode" placeholder="8001" />
         </label>
         <label>Kategori
-          <input type="text" id="prod-category" placeholder="cth: Minuman" />
+          <input type="text" id="prod-category" placeholder="Minuman" list="cat-list" />
+          <datalist id="cat-list"></datalist>
         </label>
-        <label>Harga (RM)
-          <input type="number" id="prod-price" min="0" step="0.01" required />
-        </label>
-        <label>Stok
-          <input type="number" id="prod-stock" min="0" step="1" required value="0" />
-        </label>
+        <div class="form-row">
+          <label>Harga (RM)
+            <input type="number" id="prod-price" min="0" step="0.01" required />
+          </label>
+          <label>Stok
+            <input type="number" id="prod-stock" min="0" step="1" required value="0" />
+          </label>
+        </div>
         <div class="modal-actions">
-          <button type="submit" class="btn-primary">Simpan</button>
           <button type="button" id="btn-cancel" class="btn-ghost">Batal</button>
+          <button type="submit" class="btn-primary">Simpan</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- MODAL: Receipt -->
+  <!-- ========== Modal: Receipt ========== -->
   <div id="receipt-modal" class="modal hidden">
-    <div class="modal-card receipt">
+    <div class="modal-card glass receipt-card">
       <div id="receipt-content"></div>
       <div class="modal-actions">
-        <button type="button" id="btn-print" class="btn-primary">Cetak</button>
         <button type="button" id="btn-receipt-close" class="btn-ghost">Tutup</button>
+        <button type="button" id="btn-print" class="btn-primary">Cetak</button>
       </div>
     </div>
   </div>
