@@ -80,6 +80,15 @@
   });
   document.getElementById('btn-checkout').addEventListener('click', () => Cart.checkout());
 
+  // ---------- Troli toggle (mobile collapsible) ----------
+  const cartPanel = document.getElementById('cart-panel');
+  const cartToggle = document.getElementById('cart-toggle');
+  // Default: collapsed on mobile
+  if (window.innerWidth < 768) cartPanel.classList.add('collapsed');
+  cartToggle.addEventListener('click', () => {
+    cartPanel.classList.toggle('collapsed');
+  });
+
   // ---------- Quick pay buttons ----------
   document.getElementById('quick-pay').addEventListener('click', (e) => {
     const btn = e.target.closest('button[data-pay]');

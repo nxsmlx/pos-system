@@ -23,6 +23,11 @@
         line.qty++;
       } else {
         cart.push({ id: p.id, name: p.name, price: p.price, qty: 1 });
+        // Auto-expand troli on mobile bila first item masuk
+        const panel = document.getElementById('cart-panel');
+        if (panel && panel.classList.contains('collapsed')) {
+          panel.classList.remove('collapsed');
+        }
       }
       this.render();
     },
@@ -95,6 +100,8 @@
       document.getElementById('cart-subtotal').textContent = 'RM ' + sub.toFixed(2);
       document.getElementById('cart-total').textContent = 'RM ' + total.toFixed(2);
       document.getElementById('cart-change').textContent = 'RM ' + (change >= 0 ? change.toFixed(2) : '0.00');
+      const toggleTotal = document.getElementById('cart-toggle-total');
+      if (toggleTotal) toggleTotal.textContent = 'RM ' + total.toFixed(2);
 
       const btn = document.getElementById('btn-checkout');
       btn.disabled = cart.length === 0 || total <= 0 || paid < total;

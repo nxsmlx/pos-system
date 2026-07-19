@@ -8,7 +8,7 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <title>AFQAmeer POS</title>
-  <link rel="stylesheet" href="css/style.css?v=2" />
+  <link rel="stylesheet" href="css/style.css?v=3" />
 </head>
 <body>
   <!-- ========== Top App Bar (compact) ========== -->
@@ -104,35 +104,44 @@
           <div class="chip-row" id="pos-chips"></div>
           <div id="pos-grid" class="product-grid"></div>
         </div>
-        <aside class="pos-right">
-          <div class="cart-head">
-            <h2>Troli</h2>
-            <span class="cart-badge" id="cart-badge">0</span>
-          </div>
-          <div id="cart-items" class="cart-items">
-            <p class="empty">Troli kosong. Klik produk untuk tambah.</p>
-          </div>
-          <div class="cart-summary">
-            <div class="row"><span>Subtotal</span><span id="cart-subtotal">RM 0.00</span></div>
-            <div class="row"><span>Diskaun</span>
-              <input type="number" id="cart-discount" min="0" value="0" step="0.01" />
+        <aside class="pos-right" id="cart-panel">
+          <button class="cart-toggle" id="cart-toggle" aria-label="Buka troli">
+            <span class="cart-toggle-left">
+              <span class="cart-toggle-ico">🛒</span>
+              <span>Troli</span>
+              <span class="cart-badge" id="cart-badge">0</span>
+            </span>
+            <span class="cart-toggle-right">
+              <span class="cart-toggle-total" id="cart-toggle-total">RM 0.00</span>
+              <span class="cart-toggle-chev" id="cart-toggle-chev">▲</span>
+            </span>
+          </button>
+          <div class="cart-body" id="cart-body">
+            <div id="cart-items" class="cart-items">
+              <p class="empty">Troli kosong. Klik produk untuk tambah.</p>
             </div>
-            <div class="row total"><span>Total</span><span id="cart-total">RM 0.00</span></div>
-            <div class="row">
-              <span>Bayar</span>
-              <input type="number" id="cart-paid" min="0" value="0" step="0.01" />
+            <div class="cart-summary">
+              <div class="row"><span>Subtotal</span><span id="cart-subtotal">RM 0.00</span></div>
+              <div class="row"><span>Diskaun</span>
+                <input type="number" id="cart-discount" min="0" value="0" step="0.01" />
+              </div>
+              <div class="row total"><span>Total</span><span id="cart-total">RM 0.00</span></div>
+              <div class="row">
+                <span>Bayar</span>
+                <input type="number" id="cart-paid" min="0" value="0" step="0.01" />
+              </div>
+              <div class="quick-pay" id="quick-pay">
+                <button data-pay="5">RM5</button>
+                <button data-pay="10">RM10</button>
+                <button data-pay="20">RM20</button>
+                <button data-pay="50">RM50</button>
+                <button data-pay="100">RM100</button>
+                <button data-pay="exact">Exact</button>
+              </div>
+              <div class="row change"><span>Baki</span><span id="cart-change">RM 0.00</span></div>
+              <button id="btn-checkout" class="btn-primary" disabled>Bayar</button>
+              <button id="btn-clear" class="btn-ghost">Kosongkan Troli</button>
             </div>
-            <div class="quick-pay" id="quick-pay">
-              <button data-pay="5">RM5</button>
-              <button data-pay="10">RM10</button>
-              <button data-pay="20">RM20</button>
-              <button data-pay="50">RM50</button>
-              <button data-pay="100">RM100</button>
-              <button data-pay="exact">Exact</button>
-            </div>
-            <div class="row change"><span>Baki</span><span id="cart-change">RM 0.00</span></div>
-            <button id="btn-checkout" class="btn-primary" disabled>Bayar</button>
-            <button id="btn-clear" class="btn-ghost">Kosongkan Troli</button>
           </div>
         </aside>
       </div>
@@ -240,9 +249,9 @@
     </div>
   </div>
 
-  <script src="js/store.js?v=2"></script>
-  <script src="js/catalog.js?v=2"></script>
-  <script src="js/cart.js?v=2"></script>
-  <script src="js/app.js?v=2"></script>
+  <script src="js/store.js?v=3"></script>
+  <script src="js/catalog.js?v=3"></script>
+  <script src="js/cart.js?v=3"></script>
+  <script src="js/app.js?v=3"></script>
 </body>
 </html>
