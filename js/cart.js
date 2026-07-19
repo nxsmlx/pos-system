@@ -23,11 +23,6 @@
         line.qty++;
       } else {
         cart.push({ id: p.id, name: p.name, price: p.price, qty: 1 });
-        // Auto-expand troli on mobile bila first item masuk
-        const panel = document.getElementById('cart-panel');
-        if (panel && panel.classList.contains('collapsed')) {
-          panel.classList.remove('collapsed');
-        }
       }
       this.render();
     },
