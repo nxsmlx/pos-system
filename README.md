@@ -4,7 +4,7 @@ Sistem POS (Point of Sale) ringan dibina dengan **HTML/CSS/JS tulen** - tiada bu
 
 ## Features
 
-- **Tab Jualan (POS)** - grid produk, klik untuk tambah ke trol, kira total + baki
+- **Tab Jualan (POS)** - grid produk, klik untuk tambah ke troli, kira total + baki
 - **Tab Produk (Catalog)** - CRUD produk (tambah / edit / padam), search & filter
 - **Tab Laporan** - ringkasan jualan (jumlah, bil. transaksi, purata) + senarai transaksi
 - **Diskaun** - input diskkaun RM pada cart

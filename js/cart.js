@@ -66,7 +66,7 @@
     render() {
       const wrap = document.getElementById('cart-items');
       if (!cart.length) {
-        wrap.innerHTML = '<p class="empty">Trol kosong. Klik produk untuk tambah.</p>';
+        wrap.innerHTML = '<p class="empty">Troli kosong. Klik produk untuk tambah.</p>';
       } else {
         wrap.innerHTML = cart.map(i => `
           <div class="cart-line">

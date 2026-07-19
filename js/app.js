@@ -76,7 +76,7 @@
   });
 
   document.getElementById('btn-clear').addEventListener('click', () => {
-    if (confirm('Kosongkan trol?')) Cart.clear();
+    if (confirm('Kosongkan troli?')) Cart.clear();
   });
   document.getElementById('btn-checkout').addEventListener('click', () => Cart.checkout());
 
