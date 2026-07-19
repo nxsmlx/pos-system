@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>POS System</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <span class="logo">🧾</span>
+      <h1>POS System</h1>
+    </div>
+    <nav class="tabs">
+      <button class="tab active" data-tab="pos">Jualan</button>
+      <button class="tab" data-tab="catalog">Produk</button>
+      <button class="tab" data-tab="reports">Laporan</button>
+    </nav>
+  </header>
+
+  <main class="app-main">
+    <!-- TAB: POS (Jualan) -->
+    <section id="tab-pos" class="tab-panel active">
+      <div class="pos-layout">
+        <div class="pos-left">
+          <div class="search-bar">
+            <input type="search" id="pos-search" placeholder="Cari produk (nama / barcode)..." />
+          </div>
+          <div id="pos-grid" class="product-grid"></div>
+        </div>
+        <div class="pos-right">
+          <h2>Trol</h2>
+          <div id="cart-items" class="cart-items">
+            <p class="empty">Trol kosong. Klik produk untuk tambah.</p>
+          </div>
+          <div class="cart-summary">
+            <div class="row"><span>Bil. item</span><span id="cart-count">0</span></div>
+            <div class="row"><span>Subtotal</span><span id="cart-subtotal">RM 0.00</span></div>
+            <div class="row"><span>Diskaun (RM)</span>
+              <input type="number" id="cart-discount" min="0" value="0" step="0.01" />
+            </div>
+            <div class="row total"><span>Total</span><span id="cart-total">RM 0.00</span></div>
+            <div class="row">
+              <span>Jumlah Bayar (RM)</span>
+              <input type="number" id="cart-paid" min="0" value="0" step="0.01" />
+            </div>
+            <div class="row"><span>Baki</span><span id="cart-change">RM 0.00</span></div>
+            <button id="btn-checkout" class="btn-primary" disabled>Bayar</button>
+            <button id="btn-clear" class="btn-ghost">Kosongkan Trol</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB: Catalog (Produk) -->
+    <section id="tab-catalog" class="tab-panel">
+      <div class="catalog-header">
+        <h2>Senarai Produk</h2>
+        <div>
+          <input type="search" id="catalog-search" placeholder="Cari produk..." />
+          <button id="btn-add-product" class="btn-primary">+ Produk Baru</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="catalog-table">
+          <thead>
+            <tr>
+              <th>#</th><th>Nama</th><th>Barcode</th>
+              <th>Kategori</th><th>Harga (RM)</th><th>Stok</th><th>Tindakan</th>
+            </tr>
+          </thead>
+          <tbody id="catalog-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB: Reports (Laporan) -->
+    <section id="tab-reports" class="tab-panel">
+      <h2>Laporan Jualan</h2>
+      <div class="report-cards" id="report-cards">
+        <div class="card"><h3>Jumlah Jualan</h3><p id="rep-total">RM 0.00</p></div>
+        <div class="card"><h3>Bil. Transaksi</h3><p id="rep-count">0</p></div>
+        <div class="card"><h3>Purata / Transaksi</h3><p id="rep-avg">RM 0.00</p></div>
+      </div>
+      <button id="btn-clear-sales" class="btn-ghost">Padam Semua Laporan</button>
+      <div class="table-wrap">
+        <table class="catalog-table">
+          <thead>
+            <tr><th>No</th><th>Masa</th><th>Item</th><th>Total (RM)</th><th>Bayar (RM)</th><th>Baki (RM)</th></tr>
+          </thead>
+          <tbody id="report-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL: Product Form -->
+  <div id="product-modal" class="modal hidden">
+    <div class="modal-card">
+      <h3 id="modal-title">Produk Baru</h3>
+      <form id="product-form">
+        <input type="hidden" id="prod-id" />
+        <label>Nama
+          <input type="text" id="prod-name" required />
+        </label>
+        <label>Barcode
+          <input type="text" id="prod-barcode" />
+        </label>
+        <label>Kategori
+          <input type="text" id="prod-category" placeholder="cth: Minuman" />
+        </label>
+        <label>Harga (RM)
+          <input type="number" id="prod-price" min="0" step="0.01" required />
+        </label>
+        <label>Stok
+          <input type="number" id="prod-stock" min="0" step="1" required value="0" />
+        </label>
+        <div class="modal-actions">
+          <button type="submit" class="btn-primary">Simpan</button>
+          <button type="button" id="btn-cancel" class="btn-ghost">Batal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Receipt -->
+  <div id="receipt-modal" class="modal hidden">
+    <div class="modal-card receipt">
+      <div id="receipt-content"></div>
+      <div class="modal-actions">
+        <button type="button" id="btn-print" class="btn-primary">Cetak</button>
+        <button type="button" id="btn-receipt-close" class="btn-ghost">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/store.js"></script>
+  <script src="js/catalog.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
