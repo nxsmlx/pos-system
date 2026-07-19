@@ -259,4 +259,11 @@
   Catalog.refreshAll();
   Cart.render();
   renderDashboard();
+
+  // ---------- Service Worker (PWA: offline + fullscreen app) ----------
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(err => console.warn('SW failed:', err));
+    });
+  }
 })();
